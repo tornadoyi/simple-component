@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 /**
  * bean中的属性信息
- * @author <a href="mailto:daniel.zeng@happyelements.com">daniel.zeng</a>
  *
  */
 public class PropertyInfo {
