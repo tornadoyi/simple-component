@@ -16,7 +16,6 @@ import com.simple.base.util.StringUtil;
 /**
  * JavaBean结构解析类
  * 
- * @author <a href="mailto:daniel.zeng@happyelements.com">daniel.zeng</a>
  * 
  */
 public class BeanResolver {
