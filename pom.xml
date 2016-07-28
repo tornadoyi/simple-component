@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  
+	<parent>
+	<artifactId>twofishes-root-pom</artifactId>
+		<groupId>com.twofishes</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	
+	<distributionManagement>
+		<repository>
+			<id>archiva.internal</id>
+			<name>Internal Release Repository</name>
+			<url>http://maven.happyelements.net:8083/maven/content/repositories/releases/
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>archiva.snapshots</id>
+			<name>Internal Snapshot Repository</name>
+			<url>http://maven.happyelements.net:8083/maven/content/repositories/snapshots/
+			</url>
+			<uniqueVersion>false</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>	
+	
+  
+  <groupId>com.simple</groupId>
+  <artifactId>simple-component</artifactId>
+  <version>0.1.2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>simple-dao</module>
+    <module>simple-base</module>
+    <module>simple-kv</module>
+  </modules>
+  
+
+  
+  
+  <dependencies>
+  	    <dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.alibaba</groupId>
+		  <artifactId>fastjson</artifactId>
+		  <version>1.2.9</version>
+	    </dependency>
+  </dependencies>
+</project>

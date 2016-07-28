@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database version="2"> 
+  <instance name="dev" type="singler" timestamp="2008-05-05 18:19:05"> 
+    <server type="mysql" database="spiral" host="10.130.137.64" port="3306" wrflag="rw" charset="utf8" priority="" user="root" password="1234qwer!" initPoolSize="300" maxPoolSize="750" connectTimeout="50000" socketTimeout="50000"/> 
+  </instance>  
+  <instance name="game_account" type="singler" timestamp="2008-05-05 18:19:05"> 
+    <server type="mysql" database="game_account" host="10.130.137.64" port="3306" wrflag="rw" charset="utf8" priority="" user="root" password="1234qwer!" initPoolSize="300" maxPoolSize="750" connectTimeout="50000" socketTimeout="50000"/> 
+  </instance> 
+  <map_test_str>
+  		<k name = "1">test_1</k>
+  		<k name = "2">test_2</k>
+  		<k name = "3">test_3</k>
+  </map_test_str>
+</database>
