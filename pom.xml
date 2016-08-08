@@ -146,16 +146,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- 可以用mvn test -Dname=xxx来执行指定的测试用例，*可以执行全部 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<includes>
-						<include>**/${name}.java</include>
-					</includes>
-				</configuration>
-			</plugin>
+
 
 			<plugin>
 				<groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
@@ -218,34 +209,9 @@
 				</executions>
 			</plugin>
 
-			<!-- mvn stagetag:submit stage环境打tag-->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-stagetag-plugin</artifactId>
-				<configuration>
-					<connectionType>connection</connectionType>
-					<tagBase>${svn.url}/tags/stage/${appName}</tagBase>
-					<tag>${project.artifactId}-${project.version}</tag>
-					<addTimestamp>true</addTimestamp>
-					<timestampFormat>yyyyMMddHHmmss</timestampFormat>
-					<message>tag for deploy ${subscriber}</message>
-				</configuration>
-			</plugin>
 
-			<!-- tag for deployment -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-scm-plugin</artifactId>
-				<version>1.4</version>
-				<configuration>
-					<connectionType>connection</connectionType>
-					<tagBase>${svn.url}/tags/deploy/${appName}</tagBase>
-					<tag>${project.artifactId}-${project.version}</tag>
-					<addTimestamp>true</addTimestamp>
-					<timestampFormat>yyyyMMddHHmmss</timestampFormat>
-					<message>tag for deploy ${appName}</message>
-				</configuration>
-			</plugin>
+
+
 		</plugins>
 	</build>
 
