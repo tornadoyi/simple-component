@@ -13,6 +13,7 @@
     <max-retry-delay>5000</max-retry-delay> 
  </instance> 
  
+ 
    <instance name="cmem-2"> 
     <servers> 
       <server address="10.130.137.64:11212"/> 
