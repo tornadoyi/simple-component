@@ -7,6 +7,7 @@ import java.net.URL;
 
 import org.apache.log4j.PropertyConfigurator;
 
+import com.simple.base.config.XmlConfig;
 import com.simple.base.util.tuple.Tuple;
 import com.simple.kv.storage.HeStorageFactory;
 
@@ -17,6 +18,8 @@ import com.simple.kv.storage.HeStorageFactory;
 public class Test {
 	public static void main(String args[]){
 		PropertyConfigurator.configure(Test.class.getResource("log4j.properties"));
+		System.setProperty(XmlConfig.XML_CONFIG_DIR_PATH_KAY, "/simple-kv/src/test/java");
+		
 		UserInfoDao userInfoDao = HeStorageFactory.getDAO(UserInfoDao.class);
 		UserInfo userInfo = new UserInfo();
 		userInfo.setId(100L);
@@ -26,7 +29,7 @@ public class Test {
 		userInfoDao.set(Tuple.tuple("test100", 100), userInfo);
 		
 		
-		UserInfo userInfo2 = userInfoDao.get(Tuple.tuple("test100", 100));
-		System.out.println(userInfo2.getName());
+//		UserInfo userInfo2 = userInfoDao.get(Tuple.tuple("test100", 100));
+//		System.out.println(userInfo2.getName());
 	}
 }

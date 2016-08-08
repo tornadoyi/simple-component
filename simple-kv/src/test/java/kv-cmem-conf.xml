@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kv-cmem-conf version="1"> 
+  <instance name="cmem-1"> 
+    <servers> 
+      <server address="10.130.137.64:11211"/> 
+    </servers>  
+    <init-connection>10</init-connection>  
+    <min-connection>10</min-connection>  
+    <max-connection>100</max-connection>  
+    <socket-timeout>3000</socket-timeout>  
+    <socket-connect-timeout>3000</socket-connect-timeout>  
+    <need-error-handler>true</need-error-handler>  
+    <max-retry-delay>5000</max-retry-delay> 
+ </instance> 
+ 
+   <instance name="cmem-2"> 
+    <servers> 
+      <server address="10.130.137.64:11212"/> 
+    </servers>  
+    <init-connection>10</init-connection>  
+    <min-connection>10</min-connection>  
+    <max-connection>100</max-connection>  
+    <socket-timeout>3000</socket-timeout>  
+    <socket-connect-timeout>3000</socket-connect-timeout>  
+    <need-error-handler>true</need-error-handler>  
+    <max-retry-delay>5000</max-retry-delay> 
+ </instance> 	
+	
+	
+</kv-cmem-conf>

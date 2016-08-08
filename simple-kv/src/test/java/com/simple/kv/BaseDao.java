@@ -87,4 +87,31 @@ public abstract class BaseDao implements StorageConfig {
 	}
 
 
+	@Override
+	public String getPersistentName() {
+		return "default";
+	}
+
+
+	@Override
+	public boolean enablePersistence() {
+		return true;
+	}
+
+
+	@Override
+	public String getCacheGroupName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String getTableName() {
+		return "default_table";
+	}
+	
+	
+
+
 }

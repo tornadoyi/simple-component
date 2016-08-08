@@ -16,7 +16,13 @@ import com.simple.kv.storage.anno.Storage;
 public class UserInfoDao extends BaseDao {
 
 	public static final String STORAGE_CONFIG_KEY = "UserInfoDao";
-	public static final String PERSISTENT_NAME_DB_1 = "1";
+	public static final String KV_PERSISTENT_NAME = "cmem-2";
+	
+	@Override
+	public String getKvPersistentName() {
+		return KV_PERSISTENT_NAME;
+	}
+
 	
 	
 	@Storage(storageConfigKey = STORAGE_CONFIG_KEY, type = OperationType.SET)
@@ -40,39 +46,9 @@ public class UserInfoDao extends BaseDao {
 	public UserInfo get(@Pkey({ "name", "level" }) TwoTuple<String, Integer> key) {
 		return null;
 	}
+
+
 	
 	
-	
-	/* (non-Javadoc)
-	 * @see com.simple.kv.storage.StorageConfig#getPersistentName()
-	 */
-	@Override
-	public String getPersistentName() {
-		return PERSISTENT_NAME_DB_1;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.simple.kv.storage.StorageConfig#getCacheGroupName()
-	 */
-	@Override
-	public String getCacheGroupName() {
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.simple.kv.storage.StorageConfig#enablePersistence()
-	 */
-	@Override
-	public boolean enablePersistence() {
-		return true;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.simple.kv.storage.StorageConfig#getTableName()
-	 */
-	@Override
-	public String getTableName() {
-		return "user_info";
-	}
 
 }

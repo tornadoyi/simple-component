@@ -16,11 +16,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.log4j.Logger;
 
-import com.simple.base.util.CollectionUtil;
+import com.simple.base.config.XmlConfig;
 import com.simple.kv.storage.cmem.client.DataModifyListener.Operation;
-import com.simple.kv.storage.cmem.client.KVStorageDescriptor.Server;
 import com.simple.kv.storage.cmem.client.memcached.MemcachedClient;
 import com.simple.kv.storage.cmem.client.memcached.SockIOPool;
+import com.simple.kv.storage.logger.KVLogger;
 
 /**
  * @author haitao.yao @ May 10, 2011
@@ -33,8 +33,7 @@ public class KVStorageClientImpl implements KVStorageClient {
 	 */
 	public static final int MAX_MGET_SIZE = 255;
 
-	private static final Logger logger = Logger
-			.getLogger(KVStorageClientImpl.class);
+	private static final Logger logger = KVLogger.getLogger();
 
 	private LBMemcachedClient client;
 
@@ -67,21 +66,7 @@ public class KVStorageClientImpl implements KVStorageClient {
 	    return kvsClients.get(name);
 	}
 	private static synchronized void init(){
-		KVStorageConfig config = new KVStorageConfig();
-		
-		KVStorageDescriptor des1 = new KVStorageDescriptor();
-		Server server = new Server();
-		server.setAddress("10.130.137.64:11211");
-		List<Server> serverList = CollectionUtil.newArrayList();
-		serverList.add(server);
-		des1.setServers(serverList);
-		des1.setName("default");
-		des1.after();
-		config.getKvsDescriptors().add(des1);
-		config.after();
-		
-		
-		
+		KVStorageConfig config = XmlConfig.getConfig(KVStorageConfig.class);
 		Map<String, KVStorageClientImpl> tempClients = new HashMap<String, KVStorageClientImpl>();
 		for (KVStorageDescriptor kvStorageDescriptor : config.getKvsDescriptors()){
 			KVStorageClientImpl impl = new KVStorageClientImpl();
@@ -105,7 +90,7 @@ public class KVStorageClientImpl implements KVStorageClient {
 		logger.info("current kv storage pool name: " + this.currentPoolName);
 		stopOldPools();
 		this.oldServerList = kvStorageDescriptor.getServersArray();
-		logger.info("KVStorage init done");
+		logger.info("KVStorage init done " + kvStorageDescriptor.getName());
 	}
 
 	private void stopOldPools() {

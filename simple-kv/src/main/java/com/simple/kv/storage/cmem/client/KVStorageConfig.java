@@ -9,22 +9,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+import org.simpleframework.xml.core.Commit;
+
 /**
  * config files for key-value storage
  * 
  * @author haitao.yao @ May 11, 2011
  * 
  */
+
+@Root(name = "kv-cmem-conf")
 public class KVStorageConfig implements Serializable {
 
 	/**  */
     private static final long serialVersionUID = 8065719388526529609L;
 
 
+    @ElementList(name = "instance", inline = true)
 	private List<KVStorageDescriptor> kvsDescriptors = new ArrayList<KVStorageDescriptor>(); 
 	
     private Map<String, KVStorageDescriptor> kvsMap = new HashMap<String, KVStorageDescriptor>();
     
+    @Commit
     public void after() {
         if (!kvsDescriptors.isEmpty()) {
             Map<String, KVStorageDescriptor> tmpMap = new HashMap<String, KVStorageDescriptor>();
@@ -45,35 +55,47 @@ public class KVStorageConfig implements Serializable {
     
 }
 
+@Root(name = "instance")
 class KVStorageDescriptor {
 
     private static final int DEFAULT_CONNECTION_COUNT = 10;
     
+    @Attribute
     private String name;
     
+    @ElementList(name = "servers")
     private List<Server> servers;
 
     private String[] serversArray;
 
+    @Element(name = "init-connection", required = false)
     private int initConnection = DEFAULT_CONNECTION_COUNT;
 
+    @Element(name = "min-connection", required = false)
     private int minConnection = DEFAULT_CONNECTION_COUNT;
 
+    @Element(name = "max-connection", required = false)
     private int maxConnection = DEFAULT_CONNECTION_COUNT;
 
+    @Element(name = "max-idle", required = false)
     private int maxIdle = -1;
 
+    @Element(name = "socket-timeout", required = false)
     private int socketTimeout = -1;
 
+    @Element(name = "socket-connect-timeout", required = false)
     private int socketConnectTimeout = -1;
     
-    private boolean needErrorHandler = true;
+    @Element(name = "need-error-handler", required = false)
+    private boolean needErrorHandler = false;
 
+	@Element(name = "max-retry-delay", required = false)
 	private long maxRetryDelay;
 
     public KVStorageDescriptor() {
     }
 
+    @Commit
     public void after() {
         if (this.servers == null || this.servers.isEmpty()) {
             throw new IllegalStateException(
@@ -138,10 +160,12 @@ class KVStorageDescriptor {
         return needErrorHandler;
     }
 
+    @Root(name = "server")
     public static class Server implements Serializable {
 
         private static final long serialVersionUID = 5684434871033327644L;
 
+        @Attribute
         private String address;
 
         public Server() {
